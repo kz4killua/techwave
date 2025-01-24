@@ -2,7 +2,7 @@
 # TODO: Add multiple reviews/comments to a book. (Optional)
 # TODO: Search for specific book reviews with a certain rating. (Optional)
 # TODO: Add author's name to a book. (Optional)
-# TODO: Filter reviews by rating
+# TODO: Filter reviews by rating. (Optional)
 
 import csv
 
@@ -65,7 +65,7 @@ def edit_review():
 
     database = load_database()
 
-    name = get_existing_name("Enter the name of the review you want to edit: ")
+    name = get_name("Enter the name of the review you want to edit: ", creating=False)
     new_rating = get_rating("Enter the new rating (1-5): ")
     new_comments = get_input("Enter the new comments: ")
 
@@ -86,7 +86,7 @@ def edit_review():
 def add_review():
     """Add a review to the database."""
 
-    name = get_new_name("Enter the name of the item: ")
+    name = get_name("Enter the name of the item: ", creating=True)
     rating = get_rating("Enter the rating (1-5): ")
     comments = get_input("Enter your comments: ")
 
@@ -105,7 +105,7 @@ def delete_review():
 
     database = load_database()
 
-    name = get_existing_name("Enter the name of the item you want to delete: ")
+    name = get_name("Enter the name of the item you want to delete: ", creating=False)
 
     with open('database.csv', 'w', encoding='utf-8') as f:
         writer = csv.DictWriter(f, HEADERS)
@@ -135,24 +135,17 @@ def get_input(prompt):
         print("Please enter a value.")
 
 
-def get_new_name(prompt):
-    """Prompts the user for a new name."""
-    database = load_database()
-    while True:
-        name = str(get_input(prompt))
-        if any(item['name'] == name for item in database):
-            print("Book already exists.")
-        else:
-            return name
-        
-
-def get_existing_name(prompt):
-    """Prompts the user for an existing name."""
+def get_name(prompt, creating):
+    """Prompts the user for a name."""
     database = load_database()
     while True:
         name = get_input(prompt)
-        if not any(item['name'] == name for item in database):
-            print("Book not found.")
+        
+        exists = any(item['name'] == name for item in database)
+        if creating and exists:
+            print("Item already exists.")
+        elif not creating and not exists:
+            print("Item not found.")
         else:
             return name
 
