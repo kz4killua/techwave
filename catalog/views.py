@@ -14,4 +14,4 @@ class ItemCreateView(generic.CreateView):
     fields = ['name', 'stock', 'price']
 
     def get_success_url(self):
-        return reverse('item_list')
+        return reverse('catalog:item_list')

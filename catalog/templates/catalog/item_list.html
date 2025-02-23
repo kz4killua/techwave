@@ -8,12 +8,11 @@
     <div>
 
         <h3>Add an item</h3>
-        <a href="{% url 'item_create' %}">
+        <a href="{% url 'catalog:item_create' %}">
             Click here to add an item.
         </a>
 
         <h3>All items</h3>
-
         {% for item in item_list %}
             <p>
                 Name: {{ item.name }} - Price: ${{ item.price }} - Stock: {{ item.stock }}
