@@ -4,16 +4,20 @@
     Catalog
 {% endblock %}
 
-{% block header %}
-    <div class="container-fluid my-3">
-        <h3>All items</h3>
-    </div>
-{% endblock %}
-
 {% block main %}
     <div class="container-fluid my-3">
+
+        <h3>Add an item</h3>
+        <a href="{% url 'item_create' %}">
+            Click here to add an item.
+        </a>
+
+        <h3>All items</h3>
+
         {% for item in item_list %}
-            Name: {{ item.name }} - Price: {{ item.price }} - Stock: {{ item.stock }}
+            <p>
+                Name: {{ item.name }} - Price: ${{ item.price }} - Stock: {{ item.stock }}
+            </p>
         {% empty %}
             <p>No items have been added yet.</p>
         {% endfor %}
