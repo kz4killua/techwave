@@ -28,3 +28,10 @@ def edit_item(request, item_id):
     else:
         form = ItemForm(instance=item)
     return render(request, 'catalog/edit_item.html', {'form': form})
+
+def delete_item(request, item_id):
+    item = get_object_or_404(Item, pk=item_id)
+    if request.method == "POST":
+        item.delete()
+        return redirect('catalog:item_list')
+    return render(request, 'catalog/delete_item.html', {'item': item})
