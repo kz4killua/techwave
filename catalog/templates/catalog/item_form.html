@@ -5,11 +5,22 @@
 {% endblock %}
 
 {% block main %}
-<div>
-    <h3>Add an item</h3>
-    <form method="post">{% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Save">
-    </form>
-</div>
+    <div class="container-fluid px-4 py-4">
+        
+        <!-- Page heading -->
+        <h3 class="mb-4">
+            Add an item
+        </h3>
+
+        <!-- Form to add items -->
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            
+            <!-- Button to submit the form -->
+            <button type="submit" class="btn btn-primary">
+                Add
+            </button>
+        </form>
+    </div>
 {% endblock %}

@@ -1,15 +1,25 @@
 {% extends "catalog/base.html" %}
 
-{% block title %}Edit Item{% endblock %}
+{% block title %}
+    Catalog - Edit Item
+{% endblock %}
 
 {% block main %}
-<div class="container mt-5">
-    <h1>Edit Item</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Save changes</button>
-        <a href="{% url 'catalog:item_list' %}" class="btn btn-secondary">Back to item list</a>
-    </form>
-</div>
+    <div class="container-fluid px-4 py-4">
+        
+        <!-- Page heading -->
+        <h3 class="mb-4">
+            Edit Item
+        </h3>
+
+        <!-- Form to edit items -->
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <!-- Navigation buttons -->
+            <button type="submit" class="btn btn-primary">Save changes</button>
+            <a href="{% url 'catalog:item_list' %}" class="btn btn-secondary">Back to item list</a>
+        </form>
+    </div>
 {% endblock %}
