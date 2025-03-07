@@ -10,3 +10,6 @@ to help owners organize and track their supplies through a user-friendly interfa
 3. Open a terminal and run `pip install -r requirements.txt` to install the required packages.
 4. Run `python manage.py runserver` to start the server.
 5. Open your browser and go to `http://localhost:8000/` to view the project.
+
+### Additional Notes:
+Ensure you have a virtual environment set up (optional but recommended).
