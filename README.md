@@ -13,3 +13,5 @@ to help owners organize and track their supplies through a user-friendly interfa
 
 ### Additional Notes:
 Ensure you have a virtual environment set up (optional but recommended).
+Before running the server for the first time, make sure to setup the database by running `python manage.py migrate`. 
+Test your code using `python manage.py test`
