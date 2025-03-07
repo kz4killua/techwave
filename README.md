@@ -12,6 +12,6 @@ to help owners organize and track their supplies through a user-friendly interfa
 5. Open your browser and go to `http://localhost:8000/` to view the project.
 
 ### Additional Notes:
-Ensure you have a virtual environment set up (optional but recommended).
-Before running the server for the first time, make sure to setup the database by running `python manage.py migrate`. 
-Test your code using `python manage.py test`
+1. Ensure you have a virtual environment set up (optional but recommended).
+2. Before running the server for the first time, make sure to setup the database by running `python manage.py migrate`. 
+3. Test your code using `python manage.py test`
