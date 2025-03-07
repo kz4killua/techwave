@@ -1,8 +1,8 @@
 # Techwave Solutions
 
 ## Overview
-This project is a catalog that has been built with python and Django, 
-that aims to help organize and keep track of owner's supplies through a user friendly interface.
+This project is a catalog built with Python and Django, designed 
+to help owners organize and track their supplies through a user-friendly interface.
 
 ## How to Run
 1. Install Python if you haven't already. You can download it from [here](https://www.python.org/downloads/).
