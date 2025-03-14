@@ -41,7 +41,7 @@ def edit_item(request, item_id):
             return redirect('catalog:item_list')
     else:
         form = ItemForm(instance=item)
-    return render(request, 'catalog/edit_item.html', {'form': form, "variable": ItemListView.isLoggedIn(False)})
+    return render(request, 'catalog/edit_item.html', {'form': form})
 
 
 def delete_item(request, item_id):
