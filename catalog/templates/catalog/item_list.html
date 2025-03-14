@@ -1,3 +1,4 @@
+<!-- filepath: /C:/Users/Administrator/Documents/Ontech/Software-Design-and-Analysis/project/techwave/catalog/templates/catalog/item_list.html -->
 {% extends "catalog/base.html" %}
 
 {% block title %}
@@ -11,6 +12,14 @@
         <h3 class="mb-4">
             Product List
         </h3>
+
+        <!-- Login/Logout buttons -->
+        {% if user.is_authenticated %}
+            <p>You are logged in as {{ user.username }}.</p>
+            <a class="btn btn-secondary" href="{% url 'accounts:logout' %}" role="button">Logout</a>
+        {% else %}
+            <a class="btn btn-secondary" href="{% url 'catalog:item_list' %}">Cancel</a>
+        {% endif %}
 
         <!-- The content below is hidden until the user clicks the button. -->
         <div class="accordion mb-4" id="filter-accordion">
@@ -38,7 +47,7 @@
         
         
         <!-- Button to add new items -->
-        {% if LoggedIn %}
+        {% if user.is_authenticated %}
         <a class="btn btn-primary" href="{% url 'catalog:item_create' %}" role="button">
             Add an item
         </a>
@@ -62,12 +71,12 @@
                         <td>${{ item.price }}</td>
                         <td>{{ item.stock }}</td>
                         <td>
-                            {% if LoggedIn  %}
+                            {% if user.is_authenticated %}
                             <a href="{% url 'catalog:edit_item' item.id %}">Edit</a>
                             {% endif %}
                         </td>
                         <td>
-                            {% if LoggedIn %}
+                            {% if user.is_authenticated %}
                             <a href="{% url 'catalog:delete_item' item.id %}">Delete</a>
                             {% endif %}
                         </td>

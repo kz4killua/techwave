@@ -1,0 +1,16 @@
+<!-- filepath: /C:/Users/Administrator/Documents/Ontech/Software-Design-and-Analysis/project/techwave/accounts/templates/registration/logout.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Logout</title>
+</head>
+<body>
+    <h2>Logout</h2>
+    <p>Are you sure you want to logout?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+    <a href="{% url 'catalog:item_list' %}">Cancel</a>
+</body>
+</html>
