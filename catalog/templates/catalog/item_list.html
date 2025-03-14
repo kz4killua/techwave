@@ -12,12 +12,12 @@
             Product List
         </h3>
 
-        <!-- The content below is hidden until the user clicks the "Show Filters" button. -->
+        <!-- The content below is hidden until the user clicks the button. -->
         <div class="accordion mb-4" id="filter-accordion">
             <div class="accordion-item">
                 <h4 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#filter-collapse-one" aria-expanded="false" aria-controls="filter-collapse-one">
-                        Show Filters <span class="ms-2 badge text-bg-secondary">{{ filter_count }}</span>
+                        Filters & Sorts <span class="ms-2 badge text-bg-secondary">{{ filter_count }}</span>
                     </button>
                 </h4>
                 <div id="filter-collapse-one" class="accordion-collapse collapse" data-bs-parent="#filter-accordion">
@@ -27,7 +27,7 @@
                         <form method="get" class="mb-4">
                             {{ filter.form.as_p }}
                             <button type="submit" class="btn btn-secondary mt-2">
-                                Filter
+                                Apply
                             </button>
                         </form>
 
