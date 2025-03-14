@@ -1,8 +1,8 @@
 from django.views import generic
-from .models import Item
-from .filters import ItemFilter
 from django.urls import reverse
 from django.shortcuts import render, get_object_or_404, redirect
+from .models import Item
+from .filters import ItemFilter
 from .forms import ItemForm
 
 
@@ -11,23 +11,15 @@ class ItemListView(generic.ListView):
     template_name = 'catalog/item_list.html'
     context_object_name = 'item_list'
 
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        self.filterset = ItemFilter(self.request.GET, queryset=queryset)
-        return self.filterset.qs
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['filterset'] = self.filterset
-        context['form'] = ItemForm()
-        return context
 
-    def post(self, request, *args, **kwargs):
-        form = ItemForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('catalog:item_list')
-        return self.get(request, *args, **kwargs)
+        # Add filter data to context
+        filter = ItemFilter(self.request.GET, queryset=self.get_queryset())
+        filter_count = sum(any(filter.data[key]) for key in filter.data)
+        context['filter'] = filter
+        context['filter_count'] = filter_count
+        return context
 
 
 class ItemCreateView(generic.CreateView):
