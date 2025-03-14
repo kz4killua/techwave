@@ -1,5 +1,6 @@
 from django.views import generic
 from .models import Item  # Import only the necessary models
+from .filters import ItemFilter  # Import the ItemFilter
 from django.urls import reverse
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import ItemForm  # Import the correct form
@@ -7,7 +8,25 @@ from .forms import ItemForm  # Import the correct form
 class ItemListView(generic.ListView):
     model = Item
     template_name = 'catalog/item_list.html'
+    context_object_name = 'item_list'
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        self.filterset = ItemFilter(self.request.GET, queryset=queryset)
+        return self.filterset.qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filterset'] = self.filterset
+        context['form'] = ItemForm()
+        return context
+
+    def post(self, request, *args, **kwargs):
+        form = ItemForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('catalog:item_list')
+        return self.get(request, *args, **kwargs)
 
 class ItemCreateView(generic.CreateView):
     model = Item
@@ -16,6 +35,7 @@ class ItemCreateView(generic.CreateView):
 
     def get_success_url(self):
         return reverse('catalog:item_list')
+
 
 
 def edit_item(request, item_id):
