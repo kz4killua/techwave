@@ -61,3 +61,4 @@ class CatalogTestCase(TestCase):
         response = self.client.post(url)
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Item.objects.count(), 1)
+

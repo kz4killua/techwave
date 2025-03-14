@@ -36,11 +36,13 @@
             </div>
         </div>
         
-
+        
         <!-- Button to add new items -->
+        {% if LoggedIn %}
         <a class="btn btn-primary" href="{% url 'catalog:item_create' %}" role="button">
             Add an item
         </a>
+        {% endif %}
 
         <!-- Table of items in database -->
         <table class="table table-striped mt-4">
@@ -60,10 +62,14 @@
                         <td>${{ item.price }}</td>
                         <td>{{ item.stock }}</td>
                         <td>
+                            {% if LoggedIn  %}
                             <a href="{% url 'catalog:edit_item' item.id %}">Edit</a>
+                            {% endif %}
                         </td>
                         <td>
+                            {% if LoggedIn %}
                             <a href="{% url 'catalog:delete_item' item.id %}">Delete</a>
+                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}

@@ -19,8 +19,9 @@ class ItemListView(generic.ListView):
         filter_count = sum(any(filter.data[key]) for key in filter.data)
         context['filter'] = filter
         context['filter_count'] = filter_count
+        context['LoggedIn'] = True  # Call to the isLoggedIn method with False as an argument
         return context
-
+    
 
 class ItemCreateView(generic.CreateView):
     model = Item
@@ -40,7 +41,7 @@ def edit_item(request, item_id):
             return redirect('catalog:item_list')
     else:
         form = ItemForm(instance=item)
-    return render(request, 'catalog/edit_item.html', {'form': form})
+    return render(request, 'catalog/edit_item.html', {'form': form, "variable": ItemListView.isLoggedIn(False)})
 
 
 def delete_item(request, item_id):
