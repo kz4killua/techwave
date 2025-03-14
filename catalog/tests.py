@@ -21,6 +21,14 @@ class ItemTestCase(TestCase):
         with self.assertRaises(Exception):
             Item.objects.create(name='item1', stock=10, price=10.0)
 
+        # Test negative stock
+        with self.assertRaises(Exception):
+            Item.objects.create(name='item3', stock=-10, price=10.0)
+
+        # Test negative prices
+        with self.assertRaises(Exception):
+            Item.objects.create(name='item3', stock=10, price=-10.0)
+
 
 class CatalogTestCase(TestCase):
     
