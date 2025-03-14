@@ -11,6 +11,10 @@ to help owners organize and track their supplies through a user-friendly interfa
 4. Run `python manage.py runserver` to start the server.
 5. Open your browser and go to `http://localhost:8000/` to view the project.
 
+## How to Test
+1. Ensure you have the project set up and the server is running.
+2. Open a terminal and run `python manage.py test` to run the tests.
+
 ### Additional Notes:
 1. Ensure you have a virtual environment set up (optional but recommended).
 2. Before running the server for the first time, make sure to setup the database by running `python manage.py migrate`. 

@@ -1,9 +1,10 @@
 from django.views import generic
-from .models import Item  # Import only the necessary models
-from .filters import ItemFilter  # Import the ItemFilter
+from .models import Item
+from .filters import ItemFilter
 from django.urls import reverse
 from django.shortcuts import render, get_object_or_404, redirect
-from .forms import ItemForm  # Import the correct form
+from .forms import ItemForm
+
 
 class ItemListView(generic.ListView):
     model = Item
@@ -28,6 +29,7 @@ class ItemListView(generic.ListView):
             return redirect('catalog:item_list')
         return self.get(request, *args, **kwargs)
 
+
 class ItemCreateView(generic.CreateView):
     model = Item
     template_name = 'catalog/item_form.html'
@@ -35,7 +37,6 @@ class ItemCreateView(generic.CreateView):
 
     def get_success_url(self):
         return reverse('catalog:item_list')
-
 
 
 def edit_item(request, item_id):
@@ -48,6 +49,7 @@ def edit_item(request, item_id):
     else:
         form = ItemForm(instance=item)
     return render(request, 'catalog/edit_item.html', {'form': form})
+
 
 def delete_item(request, item_id):
     item = get_object_or_404(Item, pk=item_id)
