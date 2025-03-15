@@ -3,14 +3,17 @@
 <html>
 <head>
     <title>Sign Up</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
-    <h2>Sign Up</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Sign Up</button>
-    </form>
-    <a class="btn btn-secondary" href="{% url 'catalog:item_list' %}">Cancel</a>
+    <div class="container">
+        <h2>Sign Up</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+        </form>
+        <a class="btn btn-secondary" href="{% url 'catalog:item_list' %}">Cancel</a>
+    </div>
 </body>
 </html>

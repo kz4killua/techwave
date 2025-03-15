@@ -3,22 +3,25 @@
 <html>
 <head>
     <title>Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
-    <h2>Login</h2>
-    {% if user.is_authenticated %}
-        <form method="post" action="{% url 'accounts:logout' %}">
-            {% csrf_token %}
-            <button type="submit">Logout</button>
-        </form>
-    {% else %}
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Login</button>
-        </form>
-        <a class="btn btn-secondary" href="{% url 'catalog:item_list' %}">Cancel</a>
-        <p>Don't have an account? <a href="{% url 'accounts:signup' %}">Register here</a></p>
-    {% endif %}
+    <div class="container">
+        <h2>Login</h2>
+        {% if user.is_authenticated %}
+            <form method="post" action="{% url 'accounts:logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-secondary">Logout</button>
+            </form>
+        {% else %}
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+            <a class="btn btn-primary" type="submit" href="{% url 'accounts:signup' %}">Register here</a><br>
+            <a class="btn btn-secondary" href="{% url 'catalog:item_list' %}">Cancel</a>
+        {% endif %}
+    </div>
 </body>
 </html>
