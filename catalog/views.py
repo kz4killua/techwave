@@ -19,7 +19,9 @@ class ItemListView(generic.ListView):
         filter_count = sum(any(filter.data[key]) for key in filter.data)
         context['filter'] = filter
         context['filter_count'] = filter_count
-        context['LoggedIn'] = True  # Call to the isLoggedIn method with False as an argument
+
+        # Add Logged in flag to context
+        context['LoggedIn'] = True  
         return context
     
 
