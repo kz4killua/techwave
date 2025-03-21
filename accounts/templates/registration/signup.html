@@ -1,0 +1,71 @@
+<html>
+<head>
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .valid { color: green; }
+        .invalid { color: red; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Sign Up</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.username.label_tag }} {{ form.username }}
+            </div>
+            <div class="form-group">
+                {{ form.email.label_tag }} {{ form.email }}
+            </div>
+            <div class="form-group">
+                {{ form.password1.label_tag }} {{ form.password1 }}
+            </div>
+            <div class="form-group">
+                {{ form.password2.label_tag }} {{ form.password2 }}
+            </div>
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+        </form>
+        <a class="btn btn-secondary" href="{% url 'catalog:item_list' %}">Cancel</a>
+        <div id="password-criteria">
+            <p>Password must contain:</p>
+            <ul>
+                <li id="lowercase" class="invalid">At least one lowercase letter</li>
+                <li id="uppercase" class="invalid">At least one uppercase letter</li>
+                <li id="digit" class="invalid">At least one digit</li>
+                <li id="special" class="invalid">At least one special character</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const passwordInput = document.querySelector('input[name="password1"]');
+            const criteria = {
+                lowercase: /[a-z]/,
+                uppercase: /[A-Z]/,
+                digit: /[0-9]/,
+                special: /[^a-zA-Z0-9]/
+            };
+
+            passwordInput.addEventListener('input', function () {
+                const password = passwordInput.value;
+                for (const [key, regex] of Object.entries(criteria)) {
+                    const element = document.getElementById(key);
+                    if (regex.test(password)) {
+                        element.classList.remove('invalid');
+                        element.classList.add('valid');
+                        setTimeout(() => {
+                            element.style.display = 'none';
+                        }, 3000); // Hide after 3 seconds
+                    } else {
+                        element.classList.remove('valid');
+                        element.classList.add('invalid');
+                        element.style.display = 'list-item'; // Ensure it is visible if invalid
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
