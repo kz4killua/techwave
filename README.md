@@ -4,18 +4,15 @@
 This project is a catalog built with Python and Django, designed 
 to help owners organize and track their supplies through a user-friendly interface.
 
-## How to Run
+## Before You Begin
 1. Install Python if you haven't already. You can download it from [here](https://www.python.org/downloads/).
 2. Clone the repository and navigate to the project directory.
-3. Open a terminal and run `pip install -r requirements.txt` to install the required packages.
-4. Run `python manage.py runserver` to start the server.
-5. Open your browser and go to `http://localhost:8000/` to view the project.
+
+## How to Build & Run
+1. Open a terminal and navigate to the project directory.
+2. Run the build script by running `./build.sh` (for Linux) or `build.bat` (for Windows).
+3. View the project by opening a browser and navigating to `http://localhost:8000`.
 
 ## How to Test
-1. Ensure you have the project set up and the server is running.
-2. Open a terminal and run `python manage.py test` to run the tests.
-
-### Additional Notes:
-1. Ensure you have a virtual environment set up (optional but recommended).
-2. Before running the server for the first time, make sure to setup the database by running `python manage.py migrate`. 
-3. Test your code using `python manage.py test`
+1. Open a terminal and navigate to the project directory.
+2. Run `python manage.py test` to run the tests.
