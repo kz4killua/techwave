@@ -1,13 +1,21 @@
 from django.test import TestCase
 from django.urls import reverse
 from .models import Item
+from accounts.models import User
 
 
 class ItemTestCase(TestCase):
 
     def setUp(self):
+
+        # Force authentication
+        user = User.objects.create_user(username='test')
+        self.client.force_login(user)
+
+        # Create items
         Item.objects.create(name='item1', stock=10, price=10.0)
         Item.objects.create(name='item2', stock=20, price=20.0)
+        
 
     def test_item(self):
 
@@ -33,6 +41,12 @@ class ItemTestCase(TestCase):
 class CatalogTestCase(TestCase):
     
     def setUp(self):
+
+        # Force authentication
+        user = User.objects.create_user(username='test')
+        self.client.force_login(user)
+
+        # Create items
         Item.objects.create(name='item1', stock=10, price=10.0)
         Item.objects.create(name='item2', stock=20, price=20.0)
 
@@ -69,4 +83,3 @@ class CatalogTestCase(TestCase):
         response = self.client.post(url)
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Item.objects.count(), 1)
-
