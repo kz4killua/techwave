@@ -83,3 +83,30 @@ class CatalogTestCase(TestCase):
         response = self.client.post(url)
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Item.objects.count(), 1)
+
+
+class RedItemTestCase(TestCase):
+
+    def test_item_create_with_image(self):
+        # Create an item with an image
+        item = Item.objects.create(
+            name='item3', 
+            stock=10, 
+            price=10.0,
+            image='item3.jpg'
+        )
+        self.assertEqual(item.image.url, 'item3.jpg')
+
+    def test_item_view_with_image(self):
+        # Create an item with an image
+        item = Item.objects.create(
+            name='item3', 
+            stock=10, 
+            price=10.0,
+            image='item3.jpg'
+        )
+
+        # Ensure the image is displayed in the item list
+        url = reverse('catalog:item_list')
+        response = self.client.get(url)
+        self.assertContains(response, 'item3.jpg')
