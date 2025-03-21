@@ -1,0 +1,26 @@
+{% extends "catalog/base.html" %}
+
+{% block title %}
+    Accounts - Login
+{% endblock %}
+
+{% block main %}
+    <div class="container-fluid px-4 py-4">
+        
+        <!-- Page heading -->
+        <h3 class="mb-4">
+            Login
+        </h3>
+
+        <!-- Login form -->
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <!-- Action buttons -->
+            <button type="submit" class="btn btn-primary">Login</button>
+            <a class="btn btn-secondary" href="{% url 'catalog:item_list' %}">Cancel</a>
+        </form>
+
+    </div>
+{% endblock %}

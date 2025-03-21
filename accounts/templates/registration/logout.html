@@ -1,0 +1,29 @@
+{% extends "catalog/base.html" %}
+
+{% block title %}
+    Accounts - Logout
+{% endblock %}
+
+{% block main %}
+    <div class="container-fluid px-4 py-4">
+
+        <!-- Page heading -->
+        <h3 class="mb-4">
+            Logout
+        </h3>
+
+        <p class="mb-4">
+            Are you sure you want to logout?
+        </p>
+
+        <!-- Logout form -->
+        <form method="post">
+            {% csrf_token %}
+
+            <!-- Action buttons -->
+            <button type="submit" class="btn btn-primary">Logout</button>
+            <a class="btn btn-secondary" href="{% url 'catalog:item_list' %}">Cancel</a>
+        </form>
+
+    </div>
+{% endblock %}

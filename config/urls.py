@@ -33,3 +33,8 @@ urlpatterns = [
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# Change the title of the admin site
+admin.site.site_header = "Techwave Admin"
+admin.site.site_title = "Techwave Admin"
+admin.site.index_title = "Welcome to the Techwave admin portal"
