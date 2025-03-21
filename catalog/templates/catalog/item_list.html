@@ -12,12 +12,9 @@
             Product List
         </h3>
 
-        <!-- Login/Logout buttons -->
+        <!-- Username -->
         {% if user.is_authenticated %}
-            <p>You are logged in as {{ user.username }}.</p>
-            <a class="btn btn-secondary" href="{% url 'accounts:logout' %}" role="button">Logout</a>
-        {% else %}
-            <a class="btn btn-primary" href="{% url 'accounts:login' %}" role="button">Login</a>
+            <p class="mb-4">Welcome <strong>{{ user.username }}</strong>.</p>
         {% endif %}
 
         <!-- The content below is hidden until the user clicks the button. -->
@@ -47,9 +44,9 @@
         
         <!-- Button to add new items -->
         {% if user.is_authenticated %}
-        <a class="btn btn-primary" href="{% url 'catalog:item_create' %}" role="button">
-            Add an item
-        </a>
+            <a class="btn btn-primary" href="{% url 'catalog:item_create' %}" role="button">
+                Add an item
+            </a>
         {% endif %}
 
         <!-- Table of items in database -->
@@ -71,12 +68,12 @@
                         <td>{{ item.stock }}</td>
                         <td>
                             {% if user.is_authenticated %}
-                            <a href="{% url 'catalog:edit_item' item.id %}">Edit</a>
+                                <a href="{% url 'catalog:edit_item' item.id %}">Edit</a>
                             {% endif %}
                         </td>
                         <td>
                             {% if user.is_authenticated %}
-                            <a href="{% url 'catalog:delete_item' item.id %}">Delete</a>
+                                <a href="{% url 'catalog:delete_item' item.id %}">Delete</a>
                             {% endif %}
                         </td>
                     </tr>

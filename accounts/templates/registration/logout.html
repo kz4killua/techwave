@@ -1,19 +1,29 @@
-<!-- filepath: /C:/Users/Administrator/Documents/Ontech/Software-Design-and-Analysis/project/techwave/accounts/templates/registration/logout.html -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Logout</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-</head>
-<body>
-    <div class="container">
-        <h2>Logout</h2>
-        <p>Are you sure you want to logout?</p>
+{% extends "catalog/base.html" %}
+
+{% block title %}
+    Accounts - Logout
+{% endblock %}
+
+{% block main %}
+    <div class="container-fluid px-4 py-4">
+
+        <!-- Page heading -->
+        <h3 class="mb-4">
+            Logout
+        </h3>
+
+        <p class="mb-4">
+            Are you sure you want to logout?
+        </p>
+
+        <!-- Logout form -->
         <form method="post">
             {% csrf_token %}
+
+            <!-- Action buttons -->
             <button type="submit" class="btn btn-primary">Logout</button>
+            <a class="btn btn-secondary" href="{% url 'catalog:item_list' %}">Cancel</a>
         </form>
-        <a class="btn btn-secondary" href="{% url 'catalog:item_list' %}">Cancel</a>
+
     </div>
-</body>
-</html>
+{% endblock %}
