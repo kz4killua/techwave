@@ -4,22 +4,20 @@
 {% endblock %}
 
 {% block main %}
-    <h1>{{ item.name }}</h1>
-    <p><strong>Price:</strong> ${{ item.price }}</p>
-    <p><strong>Stock:</strong> {{ item.stock }}</p>
+    <h1 style="padding-left: 20px;">{{ item.name }}</h1>
+    <p style="padding-left: 20px;"><strong>Price:</strong> ${{ item.price }}</p>
+    <p style="padding-left: 20px;"><strong>Stock:</strong> {{ item.stock }}</p>
     {% if item.image %}
-        <img src="{{ item.image.url }}" alt="{{ item.name }}" style="max-width: 300px; max-height: 300px;">
+        <img src="{{ item.image.url }}" alt="{{ item.name }}" style="max-width: 300px; max-height: 300px; padding-left: 20px;">
     {% else %}
-        <p>No image available.</p>
+        <p style="padding-left: 20px;">No image available.</p>
     {% endif %}
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data" style="padding-left: 20px;">
         {% csrf_token %}
-        <!-- Render all fields except the image field -->
         {{ form.non_field_errors }}
         {{ form.name.label_tag }} {{ form.name }}
         {{ form.price.label_tag }} {{ form.price }}
         {{ form.stock.label_tag }} {{ form.stock }}
-        
         <br><br>
         <a class="btn btn-secondary" href="{% url 'catalog:item_list' %}">Back</a>
     </form>
