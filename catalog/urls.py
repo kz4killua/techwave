@@ -20,4 +20,6 @@ urlpatterns = [
 
     # URL for deleting an existing item, also capturing the item_id as a URL parameter
     path('delete/<int:item_id>/', views.delete_item, name='delete_item'),
+
+    path('item/<int:pk>/', views.ItemDetailView.as_view(), name='item_detail'),  # Add this line
 ]

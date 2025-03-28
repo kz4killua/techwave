@@ -13,6 +13,13 @@ from django.http import HttpResponseRedirect  # For handling redirects in respon
 from django.urls import reverse_lazy  # For lazy URL reversing (e.g., in class-based views)
 from django.shortcuts import render  # For rendering templates
 from .forms import ItemForm  # Importing the form class to handle item creation and editing
+from django.urls import reverse
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views import generic
+from .models import Item
+from django.views.generic.detail import DetailView
+from .models import Item
+
 
 # View for listing all items
 class ItemListView(generic.ListView):
@@ -40,21 +47,21 @@ class ItemListView(generic.ListView):
 class ItemCreateView(LoginRequiredMixin, generic.CreateView):
     model = Item  # The model to create
     template_name = 'catalog/item_form.html'  # The template to use for item creation
-    fields = ['name', 'stock', 'price']  # Fields that will appear in the form
+    fields = ['name', 'stock', 'price', 'image']  # Include the image field
 
     def get_success_url(self):
         # Redirect to the item list page after a successful item creation
         return reverse('catalog:item_list')
 
 # View for editing an existing item
-@login_required  # Ensures the user must be logged in to access this view
+@login_required
 def edit_item(request, item_id):
     # Getting the item object based on its ID or returning a 404 if not found
     item = get_object_or_404(Item, pk=item_id)
 
     if request.method == "POST":
-        # If the form is submitted, process the data
-        form = ItemForm(request.POST, instance=item)
+        # Include request.FILES to handle file uploads
+        form = ItemForm(request.POST, request.FILES, instance=item)
         if form.is_valid():  # If the form is valid, save the item
             form.save()
             return redirect('catalog:item_list')  # Redirect to the item list after saving
@@ -64,6 +71,7 @@ def edit_item(request, item_id):
 
     # Render the edit item template with the form
     return render(request, 'catalog/edit_item.html', {'form': form})
+
 
 # View for deleting an existing item
 @login_required  # Ensures the user must be logged in to access this view
@@ -78,3 +86,8 @@ def delete_item(request, item_id):
 
     # Render the delete confirmation template with the item to be deleted
     return render(request, 'catalog/delete_item.html', {'item': item})
+
+class ItemDetailView(DetailView):
+    model = Item
+    template_name = 'catalog/item_detail.html'  # Template to render the item details
+    context_object_name = 'item'  # Name of the object in the template context
