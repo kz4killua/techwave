@@ -20,11 +20,7 @@
         {{ form.price.label_tag }} {{ form.price }}
         {{ form.stock.label_tag }} {{ form.stock }}
         
-        <!-- Render the image field without the current value -->
-        <label for="id_image">Upload New Image:</label><br><br>
-        <input type="file" name="image" id="id_image">
         <br><br>
-        <button type="submit" class="btn btn-primary">Save</button>
         <a class="btn btn-secondary" href="{% url 'catalog:item_list' %}">Back</a>
     </form>
 {% endblock %}
