@@ -14,6 +14,7 @@ class Item(models.Model):
         decimal_places=2,  # Ensures two decimal places for currency representation
         validators=[MinValueValidator(0.01)]  # Enforces a minimum price of 0.01 (no free items)
     )
+    image = models.ImageField(upload_to='item_images/', blank=True, null=True)
 
     def __str__(self):
         return self.name  # Returns the item name when the object is printed or displayed

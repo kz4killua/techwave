@@ -1,0 +1,30 @@
+{% extends "catalog/base.html" %}
+{% block title %}
+    Catalog - {{ item.name }}
+{% endblock %}
+
+{% block main %}
+    <h1>{{ item.name }}</h1>
+    <p><strong>Price:</strong> ${{ item.price }}</p>
+    <p><strong>Stock:</strong> {{ item.stock }}</p>
+    {% if item.image %}
+        <img src="{{ item.image.url }}" alt="{{ item.name }}" style="max-width: 300px; max-height: 300px;">
+    {% else %}
+        <p>No image available.</p>
+    {% endif %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!-- Render all fields except the image field -->
+        {{ form.non_field_errors }}
+        {{ form.name.label_tag }} {{ form.name }}
+        {{ form.price.label_tag }} {{ form.price }}
+        {{ form.stock.label_tag }} {{ form.stock }}
+        
+        <!-- Render the image field without the current value -->
+        <label for="id_image">Upload New Image:</label><br><br>
+        <input type="file" name="image" id="id_image">
+        <br><br>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a class="btn btn-secondary" href="{% url 'catalog:item_list' %}">Back</a>
+    </form>
+{% endblock %}

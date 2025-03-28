@@ -13,14 +13,13 @@
         </h3>
 
         <!-- Form to add items -->
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
             
             <!-- Button to submit the form -->
-            <button type="submit" class="btn btn-primary">
-                Add
-            </button>
+            <button type="submit" class="btn btn-primary">Add</button>
+            <a href="{% url 'catalog:item_list' %}" class="btn btn-secondary">Back</a>
         </form>
     </div>
 {% endblock %}

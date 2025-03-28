@@ -76,6 +76,9 @@
                                 <a href="{% url 'catalog:delete_item' item.id %}">Delete</a>
                             {% endif %}
                         </td>
+                        <td>
+                            <a href="{% url 'catalog:item_detail' item.id %}">View</a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>
