@@ -13,13 +13,17 @@
         </h3>
 
         <!-- Form to edit items -->
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
+            {% if form.image.value %}
+            <div class="mb-3">
+                <img src="{{ form.image.value.url }}" class="img-thumbnail" alt="{{ form.name.value }}">
+            </div>
+            {% endif %}
             {{ form.as_p }}
-
             <!-- Navigation buttons -->
             <button type="submit" class="btn btn-primary">Save changes</button>
-            <a href="{% url 'catalog:item_list' %}" class="btn btn-secondary">Back to item list</a>
+            <a href="{% url 'catalog:item_list' %}" class="btn btn-secondary">Back</a>
         </form>
     </div>
 {% endblock %}
