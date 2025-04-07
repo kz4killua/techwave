@@ -28,7 +28,7 @@ TechWave supports the following functionalities:
 Follow these steps to run TechWave from the provided ZIP file:
 
 1. **Download and Unzip the File**  
-   - Download `TechWave.zip` from [[insert link or specify submission location, e.g., "Canvas submission"](https://github.com/kz4killua/techwave/blob/main/techwave.zip)].  
+   - Download `TechWave.zip` from [[Download Zip](https://github.com/kz4killua/techwave/blob/main/techwave.zip)].  
    - Extract the ZIP file to a folder on your computer (e.g., double-click or right-click and select "Extract All").
 
 2. **Install Python (if not already installed)**  
